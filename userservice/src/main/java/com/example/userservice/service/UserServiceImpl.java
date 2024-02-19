@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findById(userName)
                 .map(UserDTOMapper::mapToUserDTO)
-                .orElseThrow(() -> new UserNotFoundException(
-                        "User with name: %s, not found", userName));
+                .orElseThrow(() -> new UserNotFoundException("User with name: %s, not found", userName));
+
     }
 
     @Override
@@ -35,8 +35,7 @@ public class UserServiceImpl implements UserService {
         final String userName = userAddRequest.userName();
 
         if (userRepository.findById(userName).isPresent()) {
-            throw new UserAlreadyExistsException(
-                    "User with username: %s, already exists",  userName);
+            throw new UserAlreadyExistsException("User with username: %s, already exists", userName);
         }
 
         User savedUser = User.builder()

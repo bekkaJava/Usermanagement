@@ -12,11 +12,13 @@ public class Authority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "user_name")
     private String userName;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 }
